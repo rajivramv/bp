@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.sparkfun.com/tutorials/200 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    
+    <meta name="google-site-verification" content="XUb2UlchrvwCWWyhXksBlqQy1STYtTEN_M0-tgQRHRs">
+    <meta name="google-site-verification" content="gRUAvzBJ_533b-AGTmldOJfByU6TkojfUbWovB2wKJo">
+    <title>Using an Arduino to Program an AVR - SparkFun Electronics</title>
+    <link rel="stylesheet" href="./Using an Arduino to Program an AVR - SparkFun Electronics_files/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="./Using an Arduino to Program an AVR - SparkFun Electronics_files/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="./Using an Arduino to Program an AVR - SparkFun Electronics_files/fancybox.css" type="text/css" media="screen">
+    <!-- IE is the bane of my existence. -->
+    <!--[if IE]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen" /><![endif]-->
+    <!--[if lte IE 7]><link rel="stylesheet" href="/css/ie7.css" type="text/css" media="screen" /><![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="All News" href="http://www.sparkfun.com/feeds/news/">
+    <link rel="alternate" type="application/rss+xml" title="New Products" href="http://www.sparkfun.com/feeds/products/">
+    <link rel="alternate" type="application/rss+xml" title="All Product Changes" href="http://www.sparkfun.com/feeds/changes/">
+    <link rel="alternate" type="application/rss+xml" title="All Comments" href="http://www.sparkfun.com/feeds/comments/">
+    <link rel="alternate" type="application/rss+xml" title="Videos" href="http://gdata.youtube.com/feeds/base/users/sparkfun/uploads?alt=rss&v=2&orderby=published">
+     
+    <link rel="apple-touch-icon" href="http://www.sparkfun.com/fanboy.png">
+    <link rev="canonical" type="text/html" href="http://sprkfn.com/t200"> 
+    <script type="text/javascript" async="" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/ga.js"></script><script>
+            var SFECONFIG = {
+        currencies: {"USD":{"code":"USD","title":"US Dollar","symbol_left":"$","symbol_right":"","decimal_point":".","thousands_point":",","decimal_places":"2","value":"1.0000"},"CAD":{"code":"CAD","title":"Canadian Dollar","symbol_left":"$","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"0.9887"},"AUD":{"code":"AUD","title":"Australian Dollar","symbol_left":"$","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"0.9686"},"GBP":{"code":"GBP","title":"British Pound","symbol_left":"&pound;","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"0.6165"},"EUR":{"code":"EUR","title":"Euro","symbol_left":"&euro;","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"0.7551"}},
+        preferred_currency: 'USD',
+        http_server: 'http://www.sparkfun.com',
+        https_server: 'https://www.sparkfun.com',
+        http_static: 'http://dlnmh9ip6v2uc.cloudfront.net',
+        base_url: '/',
+        url: '/',
+        controller: 'tutorials',
+        action: 'view',
+        entity_id: '200',
+        auth: false,
+        sparkrev: '1335819047'
+      };
+
+    </script>
+    <script data-main="/js/sfe" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/require-jquery.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="sfe" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/sfe.js"></script>
+    <script type="text/javascript">
+      $(document).bind('loaded', function() {
+        $('*[data="fancybox"]').fancybox('fancybox', { speedIn: 10, speedOut: 10 });
+        $("img.lazyload").lazyload('lazyload', { placeholder: "http://dlnmh9ip6v2uc.cloudfront.net/images/framework/blank.gif" });
+      });
+    </script>
+  <script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/document_iterator.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/find_proxy.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/get_html_text.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/global_constants.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/name_injection_builder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/number_injection_builder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/string_finder.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/jquery-ui.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/main.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="banner" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/banner.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="cookie" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/cookie.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="currency" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/currency.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="comment" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/comment.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="cart" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/cart.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="checkout" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/checkout.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="product" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/product.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="scrollTo" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/scrollTo.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="fancybox" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/fancybox.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="lazyload" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/lazyload.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="wishlists" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/wishlists.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="employment" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/employment.js"></script><meta name="document_iterator.js"><meta name="find_proxy.js"><meta name="get_html_text.js"><meta name="global_constants.js"><meta name="name_injection_builder.js"><meta name="number_injection_builder.js"><meta name="string_finder.js"></head>
+  <body>
+    <div id="user" class="clearfix">
+  <div class="inner">
+      <div class="header-menu-item" id="cart-menu-item" title="Shopping Cart">
+      <a href="http://www.sparkfun.com/cart">
+        <span class="cart"> </span>
+        <span id="items_in_cart">0</span> items in cart
+      </a>
+    </div>
+    <div class="header-display-item">
+      You are <b>not</b> logged in.
+    </div>
+    <div class="header-menu-item">
+      <a href="https://www.sparkfun.com/account/login" onclick="$(this).parent().next(&#39;.header-sub-menu&#39;).toggle(); $(this).parent().toggleClass(&#39;active&#39;); $(&#39;#user_login&#39;).focus(); return false;">log in</a>
+    </div>
+    <div class="header-sub-menu login-form" style="display: none;">
+      <form action="https://www.sparkfun.com/account/login" id="login" method="post">
+        <div class="row">
+          <label for="user_login">email</label><br>
+          <input id="user_login" type="text" tabindex="1" name="user"><br>
+        </div>
+        <div class="row">
+          <label for="user_password">password</label><br>
+          <input id="user_password" type="password" tabindex="2" name="passwd"><br>
+        </div>
+        <div class="row">
+          <p class="right"><input type="submit" value="log in" class="button"></p>
+        </div>
+        <div class="row">
+          <p>
+            <a href="https://www.sparkfun.com/account/forgot_password">Forgot your password</a>?
+          </p><p>
+            No account? <a href="https://www.sparkfun.com/account/make">Register one</a>!
+          </p>
+        </div>
+      </form>
+    </div>
+    </div>
+</div>
+
+    <div id="airlock" class="clearfix">
+      
+<div id="header">
+  <a href="http://www.sparkfun.com/" id="logo" class="hidetext"><span>SparkFun Electronics</span></a>
+
+  <a href="http://www.sparkfun.com/tutorials/200#products_menu" class="skip"><span>Skip to products menu</span></a>
+  <a href="http://www.sparkfun.com/tutorials/200#content" class="skip"><span>Skip to content</span></a>
+
+    <div id="banner" class="clearfix">
+    <div id="banner-nav" style="display: none;">
+      <div class="sprites" id="banner-goprev" style="height: 23px; width: 23px; background-position: -23px -0px;">&nbsp;</div>
+      <a href="http://www.sparkfun.com/banners/"><div class="sprites" id="banner-all" style="height: 23px; width: 23px; background-position: -0px -0px;">&nbsp;</div></a>
+      <div class="sprites" id="banner-gonext" style="height: 23px; width: 23px; background-position: -46px -0px;">&nbsp;</div>
+    </div>
+    <a id="banner-link" href="http://www.sparkfun.com/project_calls" onclick="$(this).sfe(&#39;track_link&#39;, this,&#39;Banners&#39;,&#39;clicked&#39;,&#39;banner-68&#39;);return false;">
+      <img width="978" height="105" id="banner-img" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/SFE03.0003.GenericProjectCall-02.jpg" alt="">
+    </a>
+  </div>
+  <script type="text/javascript">
+    $('#airlock').bind('loaded', function() {
+      $(this).banner({id: 68});
+    });
+  </script>
+
+  <div id="header-menu">
+    <ul>
+      <li class="first "><a href="http://www.sparkfun.com/categories">Products</a></li>
+      <li><a href="http://www.sparkfun.com/static/customer_service">Support</a></li>
+      <li class="active"><a href="http://www.sparkfun.com/tutorials">Tutorials</a></li>
+      <li><a href="http://www.sparkfun.com/distributors">Distributors</a></li>
+      <li><a href="http://www.sparkfun.com/static/about">About Us</a></li>
+      <li><a href="http://www.sparkfun.com/static/contact">Contact</a></li>
+      <li class="last">
+        <form class="search" style="display: block" action="http://www.sparkfun.com/search/results" id="search_form" method="get">
+          <input name="term" class="search-term" type="search" results="5" autosave="sfe_product_search" value="" placeholder="search...">
+          <input type="hidden" name="what" value="products">
+          <input type="submit" value="Go" id="search-go">
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+      <div id="left">
+        <h2 class="sidebar sidebar-bottom" id="products_menu">Categories</h2>
+        
+<ul id="category_menu_list" class="sidebar sidebar-bottom" style="display: block">
+  <li id="menu_category_new_products"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/new_products">New Products</a></li>
+  <li id="menu_category_top"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/top">Top Sellers</a></li>
+  <li id="menu_category_featured"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/featured">Staff Picks</a></li>
+    <li id="menu_category_gift_certificates"><span class="arrow"></span><a href="https://www.sparkfun.com/gift_certificates">Gift Certificates</a></li>
+  <li><hr></li>
+  <li id="menu_category_176"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/176">Books</a></li><li id="menu_category_20"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/20">Breakout Boards</a></li><li id="menu_category_70"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/70">Cables</a><ul style="display:none;"><li id="menu_category_140"><a href="http://www.sparkfun.com/categories/140">Audio</a></li><li id="menu_category_150"><a href="http://www.sparkfun.com/categories/150">Ethernet</a></li><li id="menu_category_72"><a href="http://www.sparkfun.com/categories/72">Hook Up</a></li><li id="menu_category_75"><a href="http://www.sparkfun.com/categories/75">Parallel</a></li><li id="menu_category_74"><a href="http://www.sparkfun.com/categories/74">Serial</a></li><li id="menu_category_71"><a href="http://www.sparkfun.com/categories/71">USB</a></li></ul></li><li id="menu_category_66"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/66">Cellular</a><ul style="display:none;"><li id="menu_category_67"><a href="http://www.sparkfun.com/categories/67">Antennas</a></li><li id="menu_category_69"><a href="http://www.sparkfun.com/categories/69">Eval Boards</a></li><li id="menu_category_68"><a href="http://www.sparkfun.com/categories/68">Modules</a></li></ul></li><li id="menu_category_154"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/154">Classes</a></li><li id="menu_category_51"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/51">Components</a><ul style="display:none;"><li id="menu_category_21"><a href="http://www.sparkfun.com/categories/21">AVR Microcontrollers</a></li><li id="menu_category_145"><a href="http://www.sparkfun.com/categories/145">Buttons/Switches</a></li><li id="menu_category_226"><a href="http://www.sparkfun.com/categories/226">EL</a></li><li id="menu_category_60"><a href="http://www.sparkfun.com/categories/60">General</a></li><li id="menu_category_90"><a href="http://www.sparkfun.com/categories/90">General ICs</a></li><li id="menu_category_89"><a href="http://www.sparkfun.com/categories/89">LEDs</a><ul><li id="menu_category_173"><a href="http://www.sparkfun.com/categories/173">10mm</a></li><li id="menu_category_171"><a href="http://www.sparkfun.com/categories/171">3mm</a></li><li id="menu_category_172"><a href="http://www.sparkfun.com/categories/172">5mm</a></li><li id="menu_category_170"><a href="http://www.sparkfun.com/categories/170">7-Segment</a></li><li id="menu_category_175"><a href="http://www.sparkfun.com/categories/175">Other</a></li><li id="menu_category_174"><a href="http://www.sparkfun.com/categories/174">SMD</a></li></ul></li><li id="menu_category_88"><a href="http://www.sparkfun.com/categories/88">Oscillators</a></li><li id="menu_category_22"><a href="http://www.sparkfun.com/categories/22">PIC Microcontrollers</a></li><li id="menu_category_124"><a href="http://www.sparkfun.com/categories/124">PICAXE Microcontrollers</a></li><li id="menu_category_29"><a href="http://www.sparkfun.com/categories/29">SMD ICs</a></li></ul></li><li id="menu_category_2"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/2">Development Tools</a><ul style="display:none;"><li id="menu_category_184"><a href="http://www.sparkfun.com/categories/184">.NET</a></li><li id="menu_category_93"><a href="http://www.sparkfun.com/categories/93">ADuC</a></li><li id="menu_category_218"><a href="http://www.sparkfun.com/categories/218">Android</a></li><li id="menu_category_103"><a href="http://www.sparkfun.com/categories/103">Arduino</a></li><li id="menu_category_219"><a href="http://www.sparkfun.com/categories/219">ARM</a></li><li id="menu_category_10"><a href="http://www.sparkfun.com/categories/10">AVR</a></li><li id="menu_category_164"><a href="http://www.sparkfun.com/categories/164">Beagle</a></li><li id="menu_category_187"><a href="http://www.sparkfun.com/categories/187">Chumby</a></li><li id="menu_category_136"><a href="http://www.sparkfun.com/categories/136">FPGA</a></li><li id="menu_category_101"><a href="http://www.sparkfun.com/categories/101">iPod</a></li><li id="menu_category_25"><a href="http://www.sparkfun.com/categories/25">LPC</a></li><li id="menu_category_230"><a href="http://www.sparkfun.com/categories/230">mbed</a></li><li id="menu_category_11"><a href="http://www.sparkfun.com/categories/11">MSP</a></li><li id="menu_category_9"><a href="http://www.sparkfun.com/categories/9">PIC</a></li><li id="menu_category_125"><a href="http://www.sparkfun.com/categories/125">PICAXE</a></li><li id="menu_category_137"><a href="http://www.sparkfun.com/categories/137">PSoC</a></li><li id="menu_category_104"><a href="http://www.sparkfun.com/categories/104">Roomba</a></li><li id="menu_category_94"><a href="http://www.sparkfun.com/categories/94">SAM</a></li><li id="menu_category_95"><a href="http://www.sparkfun.com/categories/95">ST</a></li><li id="menu_category_167"><a href="http://www.sparkfun.com/categories/167">STAMP</a></li><li id="menu_category_107"><a href="http://www.sparkfun.com/categories/107">Wiring</a></li><li id="menu_category_169"><a href="http://www.sparkfun.com/categories/169">WIZnet</a></li><li id="menu_category_142"><a href="http://www.sparkfun.com/categories/142">Zune</a></li></ul></li><li id="menu_category_100"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/100">Dings and Dents</a></li><li id="menu_category_204"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/204">E-Textiles</a><ul style="display:none;"><li id="menu_category_205"><a href="http://www.sparkfun.com/categories/205">Aniomagic</a></li><li id="menu_category_210"><a href="http://www.sparkfun.com/categories/210">fabrickit</a></li><li id="menu_category_135"><a href="http://www.sparkfun.com/categories/135">LilyPad</a></li><li id="menu_category_206"><a href="http://www.sparkfun.com/categories/206">Materials</a></li></ul></li><li id="menu_category_4"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/4">GPS</a><ul style="display:none;"><li id="menu_category_18"><a href="http://www.sparkfun.com/categories/18">Antennas</a></li><li id="menu_category_86"><a href="http://www.sparkfun.com/categories/86">Eval Boards</a></li><li id="menu_category_17"><a href="http://www.sparkfun.com/categories/17">Modules</a></li></ul></li><li id="menu_category_157"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/157">Kits</a></li><li id="menu_category_76"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/76">LCDs</a><ul style="display:none;"><li id="menu_category_147"><a href="http://www.sparkfun.com/categories/147">Color</a></li><li id="menu_category_148"><a href="http://www.sparkfun.com/categories/148">Monochrome</a></li></ul></li><li id="menu_category_96"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/96">Port-O-Rotary</a></li><li id="menu_category_1"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/1">Programmers</a><ul style="display:none;"><li id="menu_category_26"><a href="http://www.sparkfun.com/categories/26">ARM</a></li><li id="menu_category_7"><a href="http://www.sparkfun.com/categories/7">AVR</a></li><li id="menu_category_37"><a href="http://www.sparkfun.com/categories/37">MAXQ</a></li><li id="menu_category_6"><a href="http://www.sparkfun.com/categories/6">PIC</a></li><li id="menu_category_126"><a href="http://www.sparkfun.com/categories/126">PICAXE</a></li><li id="menu_category_168"><a href="http://www.sparkfun.com/categories/168">XMOS</a></li></ul></li><li id="menu_category_53"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/53">Prototyping</a><ul style="display:none;"><li id="menu_category_54"><a href="http://www.sparkfun.com/categories/54">Batteries</a></li><li id="menu_category_149"><a href="http://www.sparkfun.com/categories/149">Boards</a></li><li id="menu_category_91"><a href="http://www.sparkfun.com/categories/91">Connectors</a></li><li id="menu_category_182"><a href="http://www.sparkfun.com/categories/182">Enclosures</a></li><li id="menu_category_55"><a href="http://www.sparkfun.com/categories/55">General</a></li><li id="menu_category_155"><a href="http://www.sparkfun.com/categories/155">Hardware</a></li><li id="menu_category_92"><a href="http://www.sparkfun.com/categories/92">Sockets</a></li><li id="menu_category_116"><a href="http://www.sparkfun.com/categories/116">Solar</a></li><li id="menu_category_141"><a href="http://www.sparkfun.com/categories/141">Wire</a></li></ul></li><li id="menu_category_207"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/207">Retail</a><ul style="display:none;"><li id="menu_category_212"><a href="http://www.sparkfun.com/categories/212">Arduino</a></li><li id="menu_category_216"><a href="http://www.sparkfun.com/categories/216">Components</a></li><li id="menu_category_213"><a href="http://www.sparkfun.com/categories/213">Kits</a></li><li id="menu_category_211"><a href="http://www.sparkfun.com/categories/211">Materials</a></li><li id="menu_category_215"><a href="http://www.sparkfun.com/categories/215">Prototyping</a></li><li id="menu_category_214"><a href="http://www.sparkfun.com/categories/214">Sensors</a></li><li id="menu_category_217"><a href="http://www.sparkfun.com/categories/217">Tools</a></li><li id="menu_category_220"><a href="http://www.sparkfun.com/categories/220">Wireless</a></li></ul></li><li id="menu_category_134"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/134">Retired</a><ul style="display:none;"><li id="menu_category_231"><a href="http://www.sparkfun.com/categories/231">Books</a></li><li id="menu_category_194"><a href="http://www.sparkfun.com/categories/194">Breakout Boards</a></li><li id="menu_category_203"><a href="http://www.sparkfun.com/categories/203">Cables</a></li><li id="menu_category_228"><a href="http://www.sparkfun.com/categories/228">Cellular</a></li><li id="menu_category_200"><a href="http://www.sparkfun.com/categories/200">Classes</a></li><li id="menu_category_192"><a href="http://www.sparkfun.com/categories/192">Components</a></li><li id="menu_category_191"><a href="http://www.sparkfun.com/categories/191">Development Tools</a></li><li id="menu_category_225"><a href="http://www.sparkfun.com/categories/225">Ding and Dent</a></li><li id="menu_category_227"><a href="http://www.sparkfun.com/categories/227">E-Textiles</a></li><li id="menu_category_188"><a href="http://www.sparkfun.com/categories/188">GPS</a></li><li id="menu_category_190"><a href="http://www.sparkfun.com/categories/190">Kits</a></li><li id="menu_category_196"><a href="http://www.sparkfun.com/categories/196">LCD</a></li><li id="menu_category_201"><a href="http://www.sparkfun.com/categories/201">Programmers</a></li><li id="menu_category_195"><a href="http://www.sparkfun.com/categories/195">Prototyping</a></li><li id="menu_category_197"><a href="http://www.sparkfun.com/categories/197">Robotics</a></li><li id="menu_category_189"><a href="http://www.sparkfun.com/categories/189">Sensors</a></li><li id="menu_category_208"><a href="http://www.sparkfun.com/categories/208">SFE Widgets</a></li><li id="menu_category_198"><a href="http://www.sparkfun.com/categories/198">Swag</a></li><li id="menu_category_193"><a href="http://www.sparkfun.com/categories/193">Tools</a></li><li id="menu_category_199"><a href="http://www.sparkfun.com/categories/199">Wireless</a></li></ul></li><li id="menu_category_31"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/31">Robotics</a><ul style="display:none;"><li id="menu_category_179"><a href="http://www.sparkfun.com/categories/179">Drivers</a></li><li id="menu_category_181"><a href="http://www.sparkfun.com/categories/181">Kits</a></li><li id="menu_category_178"><a href="http://www.sparkfun.com/categories/178">Motors</a></li><li id="menu_category_202"><a href="http://www.sparkfun.com/categories/202">Other</a></li><li id="menu_category_180"><a href="http://www.sparkfun.com/categories/180">Wheels</a></li></ul></li><li id="menu_category_185"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/185">Sale</a></li><li id="menu_category_23"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/23">Sensors</a><ul style="display:none;"><li id="menu_category_80"><a href="http://www.sparkfun.com/categories/80">Accelerometers</a><ul><li id="menu_category_161"><a href="http://www.sparkfun.com/categories/161">1-axis</a></li><li id="menu_category_163"><a href="http://www.sparkfun.com/categories/163">3-axis</a></li></ul></li><li id="menu_category_146"><a href="http://www.sparkfun.com/categories/146">Biometrics</a></li><li id="menu_category_117"><a href="http://www.sparkfun.com/categories/117">Capacitive</a></li><li id="menu_category_151"><a href="http://www.sparkfun.com/categories/151">Current</a></li><li id="menu_category_143"><a href="http://www.sparkfun.com/categories/143">Flex / Force</a></li><li id="menu_category_85"><a href="http://www.sparkfun.com/categories/85">Gyros</a><ul><li id="menu_category_158"><a href="http://www.sparkfun.com/categories/158">1-axis</a></li><li id="menu_category_159"><a href="http://www.sparkfun.com/categories/159">2-axis</a></li><li id="menu_category_183"><a href="http://www.sparkfun.com/categories/183">3-axis</a></li></ul></li><li id="menu_category_144"><a href="http://www.sparkfun.com/categories/144">ID</a></li><li id="menu_category_160"><a href="http://www.sparkfun.com/categories/160">IMU</a></li><li id="menu_category_139"><a href="http://www.sparkfun.com/categories/139">Infrared</a></li><li id="menu_category_102"><a href="http://www.sparkfun.com/categories/102">Light / Imaging</a></li><li id="menu_category_83"><a href="http://www.sparkfun.com/categories/83">Magneto</a></li><li id="menu_category_84"><a href="http://www.sparkfun.com/categories/84">Proximity</a></li><li id="menu_category_165"><a href="http://www.sparkfun.com/categories/165">Radiation</a></li><li id="menu_category_186"><a href="http://www.sparkfun.com/categories/186">Sound</a></li><li id="menu_category_82"><a href="http://www.sparkfun.com/categories/82">Temperature</a></li><li id="menu_category_152"><a href="http://www.sparkfun.com/categories/152">Weather</a></li></ul></li><li id="menu_category_97"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/97">SFE Widgets</a></li><li id="menu_category_130"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/130">Swag</a></li><li id="menu_category_46"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/46">Tools</a><ul style="display:none;"><li id="menu_category_47"><a href="http://www.sparkfun.com/categories/47">Hand Tools</a></li><li id="menu_category_48"><a href="http://www.sparkfun.com/categories/48">Hot-Air Rework</a></li><li id="menu_category_177"><a href="http://www.sparkfun.com/categories/177">Instruments</a></li><li id="menu_category_221"><a href="http://www.sparkfun.com/categories/221">Organization</a></li><li id="menu_category_28"><a href="http://www.sparkfun.com/categories/28">Power Supplies</a></li><li id="menu_category_49"><a href="http://www.sparkfun.com/categories/49">Soldering</a></li></ul></li><li id="menu_category_138"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/138">Tracking</a></li><li id="menu_category_16"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/16">Wireless</a><ul style="display:none;"><li id="menu_category_78"><a href="http://www.sparkfun.com/categories/78">Antennas</a></li><li id="menu_category_115"><a href="http://www.sparkfun.com/categories/115">Bluetooth</a></li><li id="menu_category_79"><a href="http://www.sparkfun.com/categories/79">General</a></li><li id="menu_category_113"><a href="http://www.sparkfun.com/categories/113">Modem</a></li><li id="menu_category_114"><a href="http://www.sparkfun.com/categories/114">Nordic</a></li><li id="menu_category_112"><a href="http://www.sparkfun.com/categories/112">WiFi</a></li><li id="menu_category_111"><a href="http://www.sparkfun.com/categories/111">ZigBee &amp; 802.15.4</a><ul><li id="menu_category_222"><a href="http://www.sparkfun.com/categories/222">900MHz</a></li><li id="menu_category_223"><a href="http://www.sparkfun.com/categories/223">Series 1 (802.15.4)</a></li><li id="menu_category_224"><a href="http://www.sparkfun.com/categories/224">Series 2 (ZigBee)</a></li></ul></li></ul></li></ul>
+      </div>
+
+      <div id="right">
+        <h2 id="resources_menu" class="sidebar">Resources</h2>
+        <ul class="collapsible resources" style="display: block">
+  <li>
+    <a title="RSS Feeds" href="http://www.sparkfun.com/feeds">Feeds</a>    <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/rss-noborder.png">
+  </li>
+  <li><a href="http://learn.sparkfun.com/">Education Department</a></li>
+  <li><a href="http://forum.sparkfun.com/">Forum</a></li>
+  <li><a href="http://www.sparkfun.com/news/263">SparkFun IRC Channel</a></li>
+  <li><a href="http://www.batchpcb.com/" title="Custom PCB fabrication">BatchPCB</a></li>
+  <li><a href="http://www.opencircuits.com/">Open Circuits</a></li>
+  <li><a href="http://www.ponoko.com/make-and-sell/electronics">Ponoko - Your Personal Factory</a></li>
+  <li><a href="http://www.sparkfun.com/jobs">Jobs @ SparkFun</a></li>
+  <li><a href="http://www.sparkfun.com/tutorials/315">Sell Your Widget on SparkFun</a></li>
+  <li><a href="http://www.sparkfun.com/distributors/apply">Become a SparkFun Distributor</a></li>
+  <li><a href="http://www.sparkfun.com/quiz">Take the SparkFun Quiz</a></li>
+</ul>
+        <br>
+
+        <h2 id="currency_menu_head" class="sidebar">Currency</h2>
+        
+<div class="collapsible" id="currency_menu">
+  Display prices in
+  <input type="hidden" id="preferred_currency" value="USD">
+  <ul id="currency_menu_list" class="currency">
+          <li>
+        <a id="currency_USD" onclick="$(&#39;#airlock&#39;).currency(&#39;change&#39;, &#39;USD&#39;); return(false);" href="http://www.sparkfun.com/tutorials/200#">
+                  <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/icon_radio_checked.gif">
+                US Dollar        </a>
+    </li>
+          <li>
+        <a id="currency_CAD" onclick="$(&#39;#airlock&#39;).currency(&#39;change&#39;, &#39;CAD&#39;); return(false);" href="http://www.sparkfun.com/tutorials/200#">
+                  <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                Canadian Dollar        </a>
+    </li>
+          <li>
+        <a id="currency_AUD" onclick="$(&#39;#airlock&#39;).currency(&#39;change&#39;, &#39;AUD&#39;); return(false);" href="http://www.sparkfun.com/tutorials/200#">
+                  <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                Australian Dollar        </a>
+    </li>
+          <li>
+        <a id="currency_GBP" onclick="$(&#39;#airlock&#39;).currency(&#39;change&#39;, &#39;GBP&#39;); return(false);" href="http://www.sparkfun.com/tutorials/200#">
+                  <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                British Pound        </a>
+    </li>
+          <li>
+        <a id="currency_EUR" onclick="$(&#39;#airlock&#39;).currency(&#39;change&#39;, &#39;EUR&#39;); return(false);" href="http://www.sparkfun.com/tutorials/200#">
+                  <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                Euro        </a>
+    </li>
+      </ul>
+  </div>
+
+        <br>
+
+        <h2 id="feedback_menu" class="sidebar">Feedback</h2>
+        <form id="feedback" class="collapsible" style="display: block" action="http://www.sparkfun.com/feedback/mind.json">
+  <input type="hidden" name="sparkaptcha" id="sparkaptcha" value="1">
+  <div class="error" id="error_feedback" style="display: none; color: #F03528; font-weight: bold; margin-bottom: 5px;"></div>
+  <label for="feedback_textarea" style="font-weight: bold">What's on your mind?</label>
+  <br>
+  <textarea id="feedback_textarea" name="feedback_text"></textarea>
+  <div class="error" id="error_feedback_text" style="display: none; color: #F03528; font-weight: bold; padding-left: 2px;"></div>
+  <br>
+  <label for="dest">For which department?</label><br>
+  <select name="dest" id="feedback_dest" style="width: 99%">
+    <option value="general">General</option>
+    <option value="cust">Customer Service</option>
+    <option value="tech">Tech Support</option>
+  </select>
+  <br><br>
+  <label for="feedback_email">Please include your email address if you'd like us to respond to a specific question.</label>
+  <br>
+  <br>
+  <input type="text" id="feedback_email" name="email">
+  <div class="error" id="error_feedback_email" style="display: none; color: #F03528; font-weight: bold; padding-left: 2px; margin-bottom: 5px;"></div>
+  <input onclick="$(this).sfe(&#39;mind_feedback&#39;); return(false);" type="button" class="button" value="Submit"> 
+</form>
+<script>
+  $(document).bind('loaded', function() {
+    $('#sparkaptcha').val(1);
+  });
+</script>
+      </div>
+
+      <div id="center">
+        <a name="content" id="content"></a>
+        
+<h1 class="red-header">
+    <a href="http://www.sparkfun.com/">Home</a>
+  <span class="breadcrumb-separator"> | </span>  <a href="http://www.sparkfun.com/tutorials/">Tutorials</a>
+  <span class="breadcrumb-separator"> | </span>  Using an Arduino to Program an AVR 
+</h1>
+
+<div class="news">
+  <p class="header">
+    <img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/8e4405bec7e3185a46b92d6c38eab034" height="30" width="30">
+    <a class="title" href="./Using an Arduino to Program an AVR - SparkFun Electronics_files/Using an Arduino to Program an AVR - SparkFun Electronics.htm">Using an Arduino to Program an AVR</a>
+    <br>
+    by <a href="http://www.sparkfun.com/users/26876">zagGrad</a> | September 16, 2010 | <i><a href="http://www.sparkfun.com/tutorials/200#comments" onclick="javascript: if(!$(&#39;#comments&#39;).is(&#39;:visible&#39;)) { $(&#39;#comments_header&#39;).sfe(&#39;toggle_collapsible&#39;); } $(&#39;#comments_header&#39;).scrollTo(); return false;">44 comments</a></i>
+    <span class="skill">
+      Skill Level: 
+              <img class="star" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/icon_skill_beginner.gif">
+        Beginner
+          </span>
+  </p>
+  <hr>
+  <h2>
+	Reprogramming AVRs<br>
+	&nbsp;</h2>
+<p>
+	Many of the products SparkFun sells use an AVR, like an ATmega168 or an ATmega328, as a microprocessor. There are many reasons we like this microprocessor, not the least of which is that it is the processor used in Arduino. Just because a board uses an ATmega, though, doesn't mean it's an Arduino. However it <em>does</em> mean that code written for an Arduino can be used on a board that uses the same microprocessor! The only thing standing in the way of running custom code on a board with an AVR is actually loading the code onto the chip (since it likely isn't loaded with the serial bootloader used on an Arduino). This tutorial is a guide on how to use an Arduino as a programmer to load code onto a standalone ATmega microcontroller.</p>
+<h3>
+	Required Software<br>
+	&nbsp;</h3>
+<ul>
+	<li>
+		<a href="http://arduino.cc/en/Main/Software" target="_blank">Arduino 0018</a> (or newer)</li>
+	<li>
+		<a href="http://sourceforge.net/projects/winavr/files/" target="_blank">WinAVR </a>(Windows) or <a href="http://www.obdev.at/products/crosspack/download.html" target="_blank">Crosspack for AVR Development</a> (Mac) - This software contains avrdude, which is needed! (Note: You could get around downloading this and using the copy of avrdude that comes with Arduino; however installing the version with WinAVR will add the path to the Windows Envirnonment Variables which makes it easier to use in the command prompt)</li>
+</ul>
+<h3>
+	Hardware Required<br>
+	&nbsp;</h3>
+<ul>
+	<li>
+		<a href="http://www.sparkfun.com/commerce/product_info.php?products_id=666" target="_blank">Arduino Duemilanove</a> (or similar)</li>
+	<li>
+		<a href="http://www.sparkfun.com/commerce/product_info.php?products_id=760" target="_blank">Target Board</a> (for this tutorial the RGB Matrix with Serial Interface will be used)</li>
+	<li>
+		<a href="http://www.sparkfun.com/commerce/product_info.php?products_id=8430" target="_blank">6 F/F Jumper Wires</a></li>
+	<li>
+		<a href="http://www.sparkfun.com/commerce/product_info.php?products_id=116" target="_blank">12 Breakaway Male Headers in 3x segments</a></li>
+	<li>
+		<a href="http://www.sparkfun.com/commerce/product_info.php?products_id=84" target="_blank">Soldering Iron/Solder</a></li>
+</ul>
+<h3>
+	Firmware Required<br>
+	&nbsp;</h3>
+<ul>
+	<li>
+		ArduinoISP Sketch (Included in the 'Examples' folder of Arduino)</li>
+	<li>
+		<a href="http://www.sparkfun.com/tutorial/ArduinoISP/RGB_Backpack_v5.hex" target="_blank">Hex File for Target Board</a> (Don't know how to get this? Don't worry, it's covered in the tutorial)</li>
+</ul>
+<h3>
+	Getting the Hardware Ready<br>
+	&nbsp;</h3>
+<p>
+	Arduino uses a serial bootloader to load code onto the AVR; this is great for ease of use as it only requires a USB cable to program, however it has some drawbacks too. The serial bootloader 'permanently' takes up code space, and it also limits the programming speed which is why very large sketches can take a while to load. On most of the boards that are created at SparkFun the code is loaded using the ISP header. ISP stands for In-System Programmer; basically it allows the microprocessor to be programmed via its SPI lines. If you've ever had your hands on a board that uses an AVR, you've likely seen a header that looks like this:</p>
+<p style="text-align: center;">
+	<a href="http://sparkfun.com/tutorial/ArduinoISP/ISP%20Header.JPG" target="_blank"><img alt="http://sparkfun.com/tutorial/ArduinoISP/ISP%20Header_Scaled.JPG" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/ISP Header_Scaled.JPG" style="height: 374px; width: 499px;"></a><br>
+	ISP Header in Lower Right Corner</p>
+<p>
+	This is the ISP header, and it provides access to all the pins needed to program the AVR. You can even see the ISP header on the Arduino Duemilanove boards. Several pins from an Arduino can be connected to another board's ISP signals, allowing the board to be programmed by the Arduino.</p>
+<p style="text-align: center;">
+	<a href="http://sparkfun.com/tutorial/ArduinoISP/Arduino%20Populated.JPG" target="_blank"><img alt="http://sparkfun.com/tutorial/ArduinoISP/Arduino%20Populated_Scaled.JPG" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/Arduino Populated_Scaled.JPG"></a><a href="http://sparkfun.com/tutorial/ArduinoISP/Target%20Populated.JPG" target="_blank"><img alt="http://sparkfun.com/tutorial/ArduinoISP/Target%20Populated_Scaled.JPG" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/Target Populated_Scaled.JPG"></a><br>
+	Male Headers Soldered Into ISP Header of Arduino and Target Board</p>
+<p>
+	After the headers are installed the Arduino needs to be wired to the ISP connector on the target board. The ISP connector consists of 6 signals: Vcc, GND, Reset, SCK, MOSI and MISO. The picture below illustrates which pins belong to which position on the header.</p>
+<p style="text-align: center;">
+	<a href="./Using an Arduino to Program an AVR - SparkFun Electronics_files/ISP Header Labeled.JPG" target="_blank"><img alt="http://sparkfun.com/tutorial/ArduinoISP/ISP%20Header%20Labeled.JPG" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/ISP Header Labeled.JPG"></a><br>
+	Labeled ISP Header</p>
+<p>
+	Pin 1 of the ISP header may have different notations from different manufacturers. SparkFun uses a line drawn over pin 1, while Arduino actually prints a '1' by pin 1. The following table illustrates how the Arduino should be wired up to the target board. It also lists the pin number for the Arduino board in case the pin headers weren't soldered onto the Arduino ISP header.<br>
+	&nbsp;</p>
+<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 400px;">
+	<thead>
+		<tr>
+			<th scope="col" style="text-align: center;">
+				Arduino Pin Number</th>
+			<th scope="col" style="text-align: center;">
+				Arduino ISP Pin</th>
+			<th scope="col" style="text-align: center;">
+				Target ISP Pin</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="text-align: center;">
+				5V</td>
+			<td style="text-align: center;">
+				Vcc</td>
+			<td style="text-align: center;">
+				Vcc</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				Gnd</td>
+			<td style="text-align: center;">
+				Gnd</td>
+			<td style="text-align: center;">
+				Gnd</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				D11</td>
+			<td style="text-align: center;">
+				MOSI</td>
+			<td style="text-align: center;">
+				MOSI</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				D12</td>
+			<td style="text-align: center;">
+				MISO</td>
+			<td style="text-align: center;">
+				MISO</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				D13</td>
+			<td style="text-align: center;">
+				SCK</td>
+			<td style="text-align: center;">
+				SCK</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				D10</td>
+			<td style="text-align: center;">
+				D10</td>
+			<td style="text-align: center;">
+				Reset</td>
+		</tr>
+	</tbody>
+</table>
+<h3>
+	<br>
+	<strong>Generating the hex file</strong><br>
+	&nbsp;</h3>
+<p>
+	When an Arduino sketch is compiled and uploaded to a board, the Arduino IDE actually creates a new file called a hex file which is sent through the USB cable to the Arduino. The compiler takes the sketch and converts it into a sequence of 1's and 0's that the microcontroller can understand; this sequence of 1's and 0's is the hex file. In order to program the target board we'll need to have access to the hex file for our sketch (you can also use a hex file that has been compiled from WinAVR and GCC if you'd like). For this tutorial a hex file for the RGB Serial Matrix will be used.</p>
+<p>
+	It's a bit tricky to access the hex file for an Arduino sketch. The easiest way is to hold the 'shift' key and press the 'Verify' button. If your code compiles correctly, the second to last line will show you where the hex file is located. You'll know the correct location is being shown if the end of the line reads "<em>sketchname.</em>cpp.hex." For example, if I open Blink sketch and press shift while clicking Verify I get this output:</p>
+<p style="text-align: center;">
+	C:\DOCUME~1\rowens\LOCALS~1\Temp\build2695350595880978373.tmp\Blink.cpp.hex</p>
+<p>
+	Copy this location as we'll need it in a bit.</p>
+<h3>
+	Programming the Arduino to act as a Programmer<br>
+	&nbsp;</h3>
+<p>
+	There's one more important step before the target board can be programmed with the Arduino: the Arduino has to be programmed to work as a programmer! This is very simple; with the Arduino IDE open, open the ArduinoISP sketch by going to File-&gt;Examples-&gt;ArduinoISP. This sketch will make the Arduino act as an ISP programmer. Select your board in the Tools menu, and make sure the correct COM port is selected (also, copy down or make a mental note of the COM port. It will be needed in the next step). Then just upload the sketch to the Arduino.</p>
+<h3>
+	Programming the Target Board<br>
+	&nbsp;</h3>
+<p>
+	By now, the Arduino is programmed to act as an ISP programmer, the Arduino is connected to the target board and plugged into a USB cable from the computer, and a hex file is ready to be uploaded to the target board. The only thing left to do is send the hex file from the computer to the Arduino so that it can send the program to the target board. Avrdude is a software program that comes with WinAVR (or Crosspack) that can send a hex file to an ISP programmer. Once you've got avrdude installed (via <a href="http://sourceforge.net/projects/winavr/" target="_blank">WinAVR </a>or <a href="http://www.obdev.at/products/crosspack/index.html" target="_blank">Crosspack</a>) you're only a command away from getting the hex file to the target board. Installing these programs is simple, just follow all the prompts and install the programs with their default settings.</p>
+<p>
+	Avrdude is a command line program, so you'll have open a command prompt in order to use it.&nbsp; Once the command line is opened, type avrdude and press enter; if it's installed correctly then a list of available options will be listed on the screen. Now we're ready to send a command that will program the board. Start by navigating to the directory that the hex file was placed in. The directory can be found be removing the file name from the path that you copied in the "Generating a Hex File" section. For example, in the command prompt I had to enter the command:</p>
+<p style="text-align: center;">
+	cd C:\DOCUME~1\rowens\LOCALS~1\Temp\build2695350595880978373.tmp\</p>
+<p>
+	Now enter this command, replacing <em>comport</em> with the comport that your&nbsp; Arduino is plugged into, <em>processor </em>for the processor you're programming, and <em>hexfilename </em>for the name of your file:</p>
+<p>
+	avrdude -P <em>comport </em>-b 19200 -c avrisp -p <em>processor </em>-v -e -U flash:w:<em>hexfilename</em>.hex</p>
+<p>
+	Don't forget the command is case-sensitive, so be careful typing it or an error may occur. The command uses seven parameters: -P is the comport used, -b is the baudrate, -c is the programmer type, -p is the microprocesor being programmed, -v tells avrdude to use a verbose output, -e tells avrdude to erase the chip before programming it, and -U tells avrdude where to put the hex file.</p>
+<p>
+	The processor parameter can be a bit confusing sometimes. If you're programming an ATmega328, then m328p should be used for the processor parameter. If you're programming an ATmega168, m168 should be used. You can find the appropriate parameter for any AVR by typing 'avrdude -p?' at the command prompt to get a giant list of possibilities.</p>
+<p style="text-align: center;">
+	<a href="http://sparkfun.com/tutorial/ArduinoISP/ArduinoISP%20Command%20Prompt.jpeg" target="_blank"><img alt="http://sparkfun.com/tutorial/ArduinoISP/ArduinoISP%20Command%20Prompt_Scaled.jpeg" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/ArduinoISP Command Prompt_Scaled.jpeg"></a><br>
+	Avrdude Output</p>
+<h3>
+	Recap<br>
+	&nbsp;</h3>
+<p>
+	That's it! Now you know how to program a standalone AVR from an Arduino using ArduinoISP. Here's a shortened version to recap what was covered:</p>
+<ol>
+	<li>
+		Upload ArduinoISP to the Arduino</li>
+	<li>
+		Connect the Arduino to the Target Board's ISP signals</li>
+	<li>
+		Generate the hex file to be loaded onto the Target Board</li>
+	<li>
+		Use avrdude to send the hex file to the Arduino, which will program the Target Board</li>
+</ol>
+<p>
+	Hope you learned something! Leave questions or improvements in the comments section.</p></div>
+
+<div id="comments_container">
+  
+<h2 id="comments_header" class="collapsible grey big">
+  <span class="arrow visible">&#9660; </span>Comments
+  <span class="count">
+    44 comments     <a href="http://www.sparkfun.com/tutorials/200/comments.rss"><img src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/rss.gif" style="vertical-align: top; margin-top: -1px;"></a>  </span>
+</h2>
+<div id="comments" class="collapsible white">
+  <div>  <div class="login">
+  <b><a href="https://www.sparkfun.com/account/login">Log in</a> or <a href="https://www.sparkfun.com/account/make">register</a> to post comments.</b>
+  </div>
+</div>
+  <div id="comment-reply-form" style="display: none">  <div style="text-align: center">
+    <b><a href="http://www.sparkfun.com/tutorials/200#" onclick="javascript: $(&#39;right&#39;).scrollTo(); $(&#39;user_login&#39;).select()">Login</a> to post comments.</b>
+  </div>
+</div>
+  <div id="comment-edit-form" style="display: none">  <div style="text-align: center">
+    <b><a href="https://www.sparkfun.com/account/login">Log in</a> to post comments.</b>
+  </div>
+</div>
+  <ul class="comments">
+    <li id="comment-4eaad848757b7fd351004a84" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/50067">Valen</a>
+    <span class="wide">|</span>
+    <span title="Monday, 04-Oct-10 17:33:50 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a84">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a84">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">2</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Quote: “You can leave the sketch here or copy it to a directory that is easier to remember; perhaps the "C:\” root directory.“<br>
+Small snag! In Windows Vista or Windows 7 ordinary user accounts cannot manipulate files in the root of C. They need administrator account rights. It’s better to advise them to put it in their (My) Documents folder.</p></div>
+<ul class="comments"><li id="comment-4eaad848757b7fd351004ae6" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/8e4405bec7e3185a46b92d6c38eab034">    <span class="comment-internal" title="SFE Employee"> </span>        <a href="http://www.sparkfun.com/users/26876">zagGrad</a>
+    <span class="wide">|</span>
+    <span title="Wednesday, 06-Oct-10 12:15:43 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004ae6">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004ae6">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Thanks, I’ve added a note in the tutorial for this.</p></div>
+</li></ul></li><li id="comment-4eaad848757b7fd351004a7a" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/75838">Dave D.</a>
+    <span class="wide">|</span>
+    <span title="Monday, 04-Oct-10 14:58:46 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a7a">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a7a">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Will this work for programming attiny as well?</p></div>
+<ul class="comments"><li id="comment-4eaad848757b7fd351004a7c" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/95299">Rawdust</a>
+    <span class="wide">|</span>
+    <span title="Monday, 04-Oct-10 15:31:22 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a7c">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a7c">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>It will program any avr including the ATiny. If you use  an Arduino sketch, you are limited to the chips that are target boards(Atmega328, Atemga168..etc). If you write a program using WinAVR, you can use your Arduino to program the ATiny.</p></div>
+</li><li id="comment-4eaad857757b7fd35100acb5" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/208263">ikid</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 11-Aug-11 14:45:29 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad857757b7fd35100acb5">about 9 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad857757b7fd35100acb5">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>To program an attiny with arduino you need to add it to the boards list. I found how to do it at avr-developers.com</p></div>
+</li></ul></li><li id="comment-4eaad848757b7fd351004a7d" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/95299">Rawdust</a>
+    <span class="wide">|</span>
+    <span title="Monday, 04-Oct-10 15:41:22 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a7d">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a7d">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Excellent topic. It would be noteworthy that you can use this to burn the Arduino Bootloader onto a blank ATMega328. You would save $1.20 per chip and have an arduino for less than $10. Search for hackduino for more information.</p></div>
+</li><li id="comment-4eaad848757b7fd351004a98" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">        <span class="comment-distributor" title="Distributor"> </span>    <a href="http://www.sparkfun.com/users/122229">4Project</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 05-Oct-10 01:47:49 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a98">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a98">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Is it just me or there is a problem with this page layout? I see the text much wider than the page area and the text refuses to wrap to the next line.</p></div>
+<ul class="comments"><li id="comment-4eaad848757b7fd351004a9e" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/44764">nedium</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 05-Oct-10 05:28:38 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a9e">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a9e">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Yeap, I can’t read the last words' last letters too. Tried both firefox 3.6.10 and ie 8.0 and text does not wrap…</p></div>
+<ul class="comments"><li id="comment-4eaad848757b7fd351004afd" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/130347">followr</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 07-Oct-10 01:27:20 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004afd">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004afd">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>It’s been fixed now. :)</p></div>
+</li></ul></li></ul></li><li id="comment-4eaad848757b7fd351004a99" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/129023">MarkusGritsch</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 05-Oct-10 01:53:18 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a99">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a99">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <blockquote><p>This will create a new folder in the sketch directory called ‘applet.'<br>
+Unfortunately, starting with arduino-0018 they switched from the 'applet’ folder in the sketch directory to folders named ‘buildXXXX.tmp’ located in the Windows %TEMP% directory. To find the correct one it’s best to delete all the old ones before launching the Arduino IDE.</p></blockquote></div>
+</li><li id="comment-4eaad848757b7fd351004a9a" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/129023">MarkusGritsch</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 05-Oct-10 01:59:15 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004a9a">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004a9a">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Why is it recommended to install WinAVR?  Wouldn’t it be possible to use ‘avrdude.exe’ from the ‘arduino-0018\hardware\tools\avr\bin’ folder?</p></div>
+<ul class="comments"><li id="comment-4eaad848757b7fd351004afe" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/130347">followr</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 07-Oct-10 01:30:29 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004afe">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004afe">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <blockquote><p>Wouldn’t it be possible to use ‘avrdude.exe’ from the ‘arduino-0018hardwaretoolsavrbin’ folder?<br>
+Yes, it should be but installing the software separately puts it on the search path which makes executing it more straightforward. If you know how to call the binary directly you should be able to avoid installing avrdude separately.</p></blockquote></div>
+</li></ul></li><li id="comment-4eaad848757b7fd351004aaa" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/43383">dathomar</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 05-Oct-10 08:02:34 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004aaa">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004aaa">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Does this Sketch work on the arduino mega boards?</p></div>
+</li><li id="comment-4eaad848757b7fd351004ac6" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/100247">ThinkerT</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 05-Oct-10 17:04:38 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004ac6">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004ac6">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Could you load a hex file onto an SD card and then use a version of arduinoisp to write it onto another chip?</p></div>
+<ul class="comments"><li id="comment-4eaad848757b7fd351004b19" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/8e4405bec7e3185a46b92d6c38eab034">    <span class="comment-internal" title="SFE Employee"> </span>        <a href="http://www.sparkfun.com/users/26876">zagGrad</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 07-Oct-10 16:26:25 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004b19">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004b19">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Ah, this would be tricky but probably possible. You would have to substantially rewrite the ArduinoISP sketch in order to retrieve the binary data from the SD card over SPI rather than through the serial port. You’d also have to be delicate in handling the SPI lines as the same bus would be used to read from the SD card as is used to program the AVR.</p></div>
+</li></ul></li><li id="comment-4eaad848757b7fd351004b68" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/118920">s-p-e-x</a>
+    <span class="wide">|</span>
+    <span title="Saturday, 09-Oct-10 16:30:19 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004b68">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004b68">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Here’s what worked for me (OSX 10.6.x, Arduino-0021 software, on an Arduino Uno, programing the Simon SMD kit):<br>
+bash$ cd /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin<br>
+bash$ ./avrdude -C ../etc/avrdude.conf -P /dev/tty.usbmodem1d11 -b 19200 -c avrisp -p m328p -v -e -U flash:w:/Users/spex/Desktop/Simon/Simon-v21-Firmware/Simon-v21.hex</p></div>
+</li><li id="comment-4eaad848757b7fd351004c30" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/80367">Scotty</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 14-Oct-10 19:04:16 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004c30">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004c30">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I would like to program a 3.3V Arduino Pro Mini, using this method. Are the connections on the Pro Mini the same as descibed for the “arduino” in the table? (sort of vague, does it mean the Duemilanove? is it the same for the Mega?) thanks!</p></div>
+</li><li id="comment-4eaad848757b7fd351004c7a" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/84862">dandeeman</a>
+    <span class="wide">|</span>
+    <span title="Saturday, 16-Oct-10 10:12:15 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004c7a">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004c7a">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I like your green command prompt. ;–)<br>
+C:&gt; color 0A<br>
+ftw!</p></div>
+</li><li id="comment-4eaad848757b7fd351004d73" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/100247">ThinkerT</a>
+    <span class="wide">|</span>
+    <span title="Friday, 22-Oct-10 13:31:36 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad848757b7fd351004d73">about 2 years ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad848757b7fd351004d73">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Could the programming be done over a serial line? Then you could take I2C from an EEPROM and then send serial to the AVR?<br>
+Thanks</p></div>
+</li><li id="comment-4eaad849757b7fd35100525a" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/146591">theBecwar</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 18-Nov-10 14:12:14 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad849757b7fd35100525a">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad849757b7fd35100525a">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Add an execution path: (in case you want to use the Arduino IDE’s AVRDude install)<br></p>
+
+<br>  
+
+
+<p>Windows XP:<br><br>
+http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/path.mspx?mfr=true<br></p>
+
+<br>  
+
+
+<p>Vista/7:<br><br>
+Control Panel-&gt;System-&gt;Advanced System Settings-&gt;Environment Variables<br></p></div>
+</li><li id="comment-4eaad849757b7fd3510052ec" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/162307">splosion</a>
+    <span class="wide">|</span>
+    <span title="Sunday, 21-Nov-10 20:45:52 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad849757b7fd3510052ec">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad849757b7fd3510052ec">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Thanks, this was very helpful.  As an absolute bare-bones beginner, there were a few things that confused me that I hope to clarify below for anyone else like me.<br></p>
+
+<br>  
+
+
+<p>I used an Arduino Uno to update a sparkfun RGB Matrix.  From the wording it wasn’t clear whether the wires on the arduino side should be hooked up to the Uno’s icp pins or in the numbered sockets.  The wires should be in the sockets.  Also, I had to use the switch “-F” to override the check of the device signature on the avrdude command. My command was as follows: “avrdude -P com3 -b 19200 -c avrisp -p m8 -F -v -e -U flash:w:RGB_Backpack_v5.hex”<br></p>
+
+<br>  
+
+
+<p>Thanks again – this along with the RGB Matrix Library makes output a breeze!</p></div>
+</li><li id="comment-4eaad84a757b7fd3510057b6" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/100247">ThinkerT</a>
+    <span class="wide">|</span>
+    <span title="Wednesday, 08-Dec-10 14:01:12 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84a757b7fd3510057b6">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84a757b7fd3510057b6">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I saw this one make: <br><br>
+http://hlt.media.mit.edu/wiki/pmwiki.php?n=Main.ArduinoATtiny4585. <br></p>
+
+<br>  
+
+
+<p>A bit easier than all of this for the ATTiny 45 &amp; 85</p></div>
+<ul class="comments"><li id="comment-4eaad84a757b7fd351005b99" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/010419cb07f7197eea6c2f2802375e79">            <a href="http://www.sparkfun.com/users/157117">Jeremy Sag</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 23-Dec-10 07:52:34 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84a757b7fd351005b99">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84a757b7fd351005b99">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>@ThinkerT, did you get programming an ATTiny85 via the Arduino IDE to work? I have tried a few times and followed instructions to the last detail, and still could not get it to program. Let me know if you had to modify anything, thanks!</p></div>
+<ul class="comments"><li id="comment-4eaad84b757b7fd351005c6a" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/100247">ThinkerT</a>
+    <span class="wide">|</span>
+    <span title="Monday, 27-Dec-10 12:21:03 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84b757b7fd351005c6a">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84b757b7fd351005c6a">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I did have a hard time getting it myself. What I found to be helpful was to make a folder just on your desktop called “arduinoSketchbook” or something and put a folder called “hardware” in it with the unzipped ATTiny folder in it. Then I changed the sketchbook location in Arduino preferences to the “arduinoSketchbook” folder and restarted the environment.<br>
+This worked for me; please reply if it is too confusing.</p></div>
+</li></ul></li></ul></li><li id="comment-4eaad84d757b7fd351006a47" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168307">Member #168307</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 18-Jan-11 20:46:11 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84d757b7fd351006a47">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84d757b7fd351006a47">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  </div>
+</li><li id="comment-4eaad84d757b7fd351006a48" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168307">Member #168307</a>
+    <span class="wide">|</span>
+    <span title="Tuesday, 18-Jan-11 20:49:34 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84d757b7fd351006a48">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84d757b7fd351006a48">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>p.s…….the squiggly line before the 1 does not look like the squiggly line my computer has. Why does this have to be so hard to do??????????</p></div>
+</li><li id="comment-4eaad84d757b7fd351006a8c" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/196523">pierred136</a>
+    <span class="wide">|</span>
+    <span title="Wednesday, 19-Jan-11 13:30:08 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84d757b7fd351006a8c">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84d757b7fd351006a8c">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I have a graphic LCD with parallel interface. I’m trying to make a “serial interface” using the Sparkfun GLCD code with a ATM328P. The LCD works as I tried it with the Arduino GLCD library.<br>
+I have an arduino setup as a ISP programmer. It works since I can burn bootloaders.<br>
+I send the “main.hex” file with Avrdude. Goes in fine, no errors, but when I try to use the 328 with the LCD, I get nothing (no splash screen). The 328 already has a bootloader. Do I have to get rid of it first? if yes, how? Or what am I doing wrong?<br>
+I’m rather new with AVR (4 months), but I know electronics. I’ve doublechecked all connexions. Everything seems fine.<br>
+Thanks for your help.<br>
+Pierre</p></div>
+</li><li id="comment-4eaad84d757b7fd351006b23" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168307">Member #168307</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 20-Jan-11 19:17:19 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84d757b7fd351006b23">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84d757b7fd351006b23">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Does the ATMEGA16 need a bootloader to work with this method?</p></div>
+</li><li id="comment-4eaad84e757b7fd3510073e8" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/161272">E.Mk</a>
+    <span class="wide">|</span>
+    <span title="Monday, 14-Feb-11 19:44:03 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad84e757b7fd3510073e8">about a year ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad84e757b7fd3510073e8">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>What determines the baud rate after downloading the ArduinoISP sketch?<br>
+I get errors with 19200, but it seems to work with 57600.  I’m using an Arudino Pro 328, trying to program the LCD serial backpack</p></div>
+<ul class="comments"><li id="comment-4eaad853757b7fd35100915a" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/84400">elchan</a>
+    <span class="wide">|</span>
+    <span title="Monday, 16-May-11 10:37:44 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad853757b7fd35100915a">last year</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad853757b7fd35100915a">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>It’s in the setup() method of the ArduionISP sketch.</p></div>
+<ul class="comments"><li id="comment-4eaad854757b7fd351009ae7" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/161272">E.Mk</a>
+    <span class="wide">|</span>
+    <span title="Sunday, 12-Jun-11 23:07:40 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad854757b7fd351009ae7">last year</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad854757b7fd351009ae7">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>In the ArduinoISP sketch, in the setup function, it reads</p>
+
+<pre><code>Serial.begin(19200);  
+</code></pre>
+
+<p>And yet, specifying baud rate as 19200 on my MacBook Air fails, but 57600 works…<br>
+strange!</p></div>
+</li></ul></li></ul></li><li id="comment-4eaad853757b7fd35100915c" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/84400">elchan</a>
+    <span class="wide">|</span>
+    <span title="Monday, 16-May-11 10:41:16 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad853757b7fd35100915c">last year</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad853757b7fd35100915c">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Great article.  I have 3 variants of Arduinos in my collection, and just got a KKMultiCopter quad prop controller board, that I needed to program with ISP, and didn’t want to spend another $10 to get a ISP programmer.<br>
+Of all the other articles I read, this is the clearest, and show the use of the arduino isp header to connect instead of hunting around the board for other lines.<br>
+Good job!</p></div>
+</li><li id="comment-4eaad854757b7fd351009d05" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/555bf8efb3add9dc477abbf229060a54">            <a href="http://www.sparkfun.com/users/183638">ndrizza</a>
+    <span class="wide">|</span>
+    <span title="Saturday, 18-Jun-11 16:32:34 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad854757b7fd351009d05">about 11 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad854757b7fd351009d05">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Is the Backpack removable from the LED-Matrix?<br>
+(I’m afraid it will break if I try to remove it.)<br>
+Otherwise I don’t know how to solder the ISP Breakaway Headers onto it.</p></div>
+</li><li id="comment-4eaad856757b7fd35100a6b0" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168065">Adamant</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 21-Jul-11 08:00:59 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a6b0">about 10 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a6b0">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Is this set up capable of changing the fuse bits?</p></div>
+<ul class="comments"><li id="comment-4eaad856757b7fd35100a6db" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/840fe5cca95766c2fccbff11fc9d13e8">            <a href="http://www.sparkfun.com/users/154228">Paradoxial</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 21-Jul-11 14:12:44 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a6db">about 10 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a6db">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Yes. It is capable of everything a normal Jtag programmer is capable of.</p></div>
+<ul class="comments"><li id="comment-4eaad856757b7fd35100a6f6" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168065">Adamant</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 21-Jul-11 19:10:13 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a6f6">about 10 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a6f6">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>And can this be done using the UNO?</p></div>
+<ul class="comments"><li id="comment-4eaad856757b7fd35100a6fa" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168065">Adamant</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 21-Jul-11 20:22:28 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a6fa">about 10 months ago</a></span>
+     *    <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a6fa">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p> I get: “verification error, first mismatch at byte 0x0000 0x0c !=0x00"<br>
+"verification error; content mismatch"<br>
+This is with using -F to override the check earlier.<br>
+Without -F I get:<br>
+"Device Signature = 0x0000000<br>
+Yikes! Invalid device signature"<br>
+I have my target hooked up like this: http://arduino.cc/en/Tutorial/ArduinoISP<br>
+(not using the target board in this tutorial)</p></div>
+<ul class="comments"><li id="comment-4eaad856757b7fd35100a737" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168065">Adamant</a>
+    <span class="wide">|</span>
+    <span title="Friday, 22-Jul-11 12:32:10 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a737">about 10 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a737">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>Can this be done on an UNO with the second chip set up on a breadboard?  I connect all of the appropriate pins, as stated in the table above.  But I am getting these errors!  Do I need to have a 16MHz crystal hooked up on the target breadboard? Is there a way to set it to use the internal crystal?</p></div>
+<ul class="comments"><li id="comment-4eaad856757b7fd35100a76c" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/840fe5cca95766c2fccbff11fc9d13e8">            <a href="http://www.sparkfun.com/users/154228">Paradoxial</a>
+    <span class="wide">|</span>
+    <span title="Saturday, 23-Jul-11 05:46:40 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a76c">about 10 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a76c">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>That means your device isn’t connected at all, or it is connected incorrectly. Are you sure it is connected the same as in the picture?</p></div>
+<ul class="comments"><li id="comment-4eaad856757b7fd35100a77e" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/168065">Adamant</a>
+    <span class="wide">|</span>
+    <span title="Saturday, 23-Jul-11 10:15:02 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad856757b7fd35100a77e">about 10 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad856757b7fd35100a77e">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I am almost positive that it is. I will upload and link a picture this evening, so hopefully someone can help me.<br>
+I don’t have the crystal or caps hooked up, could that be part of the problem?</p></div>
+<ul class="comments"><li id="comment-4eaad85a757b7fd35100bf6c" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/186572">CrazyCreator</a>
+    <span class="wide">|</span>
+    <span title="Monday, 24-Oct-11 08:41:28 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad85a757b7fd35100bf6c">about 7 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad85a757b7fd35100bf6c">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>It definitely could be. I found that I needed them when using a BB Arduino.</p></div>
+</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li><li id="comment-4eaad859757b7fd35100bac9" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/238126">Member #238126</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 06-Oct-11 10:02:27 MDT" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4eaad859757b7fd35100bac9">about 7 months ago</a></span>
+        <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4eaad859757b7fd35100bac9">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>GREAT TUTORIAL!! =D<br>
+But I have a problem during flashing the serial backpack of the RGB Matrix…<br>
+With one of my 2 RGBs I have no problems but with the other even more.<br>
+Sometimes the device signature is invalid (0x000000). I don’t know why but if i try it several times it function. When it function and the flash was “successful” it can’t be verified successfully.<br>
+The first mismatch is at 0x0000 0x0c != 0x00<br>
+Then he stops :(<br>
+Does anybody can help me?</p></div>
+</li><li id="comment-4f33ab22757b7fd071000000" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/anon.png">            <a href="http://www.sparkfun.com/users/300194">arnulf</a>
+    <span class="wide">|</span>
+    <span title="Thursday, 09-Feb-12 04:16:50 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4f33ab22757b7fd071000000">about 3 months ago</a></span>
+     *    <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4f33ab22757b7fd071000000">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p>I guess Arduino/Teensy &amp; avrdude can be used to program other than AVR chips ? Like <a href="http://www.ebay.com/sch/?_kw=nRF24LE1&_clu=2&_fcid=154&_localstpos=&_sc=1&_sop=15&_stpos=&gbr=1">nRF24LE1 (ebay)</a>? (2.4GHz transceiver with 8051 core &amp; 16kB flash, price from $13.45 incl. shipping :)</p>
+
+<p>Anyone tried this ?</p>
+
+<p>(without 8051, but with SPI interface (connect to Arduino/Teensy/…): <a href="http://www.ebay.com/sch/i.html?_nkw=nRF24L01&_sacat=0&_stpos=&_sop=15&gbr=1">nRF24L01</a> ~$2.85 :)</p>
+
+<p><a href="http://www.nordicsemi.com/eng/Products/2.4GHz-RF/nRF24LE1">nordicsemi.com</a> don’t tell much about programming other that you can use a special “Programming Kit” or a normal ISP-SPI flash programmer (PROG pin has to be activated).</p>
+
+<p>EDIT:</p>
+
+<p>I found a programmer in Finland at SeinÃ¤joki University:
+<a href="http://lompsa.seamk.fi/sulautetut/SURFnet/SURF_e.htm">SURFnet</a>
+This use a custom designed card with ATmega32U4, same as <a href="http://www.pjrc.com/store/teensy.html">Teensy</a> Tried to flash USB-SPI program to Teensy, it seems like the SURFprogrammer recognized it.</p>
+
+<p>All that’s missing now is a 3V3 PSU, and some wrap cable /connector to connect the nRF24LE1 (use 2mm space between pins) to Teensy.</p></div>
+</li><li id="comment-4f3f156ece395fed06000000" class=" comment">
+<div class="clearfix tagline">
+  <div class="comment-info">
+    <img class="avatar" src="./Using an Arduino to Program an AVR - SparkFun Electronics_files/4e50e331fdb20f4c9440a4aacc620637">            <a href="http://www.sparkfun.com/users/132216">Fabio Ornellas</a>
+    <span class="wide">|</span>
+    <span title="Friday, 17-Feb-12 20:05:18 MST" class="date"><a href="http://www.sparkfun.com/tutorials/200#comment-4f3f156ece395fed06000000">about 3 months ago</a></span>
+     *    <span class="rating-star">
+          <span title="Please login to up-vote comments" class="star-dark"> </span>
+        </span>
+    <span class="rating" id="comment-rating-4f3f156ece395fed06000000">
+      <a data="fancybox" href="http://www.sparkfun.com/static/comment_help">1</a>
+    </span>
+  </div>
+  <div class="actions">
+      </div>
+</div>
+<div class="comment-text">
+  <p><a href="https://github.com/fornellas/SFRGBLEDMatrix">Here</a> is another firmware to try out with the RGB Matrix:</p>
+
+<p>It will allow 4096 colors, not only 255 as the v5 firmware of the article.</p></div>
+</li>  </ul>
+</div>
+<br>
+
+</div>
+      </div>
+    </div>
+
+    <div id="footer" class="clearfix">
+  <div class="clearfix">
+    <div id="sharing-ingenuity" class="hidetext"><span>Sharing Ingenuity</span></div>
+    <div id="social-spew">
+      <ul>
+        <li class="youtube"><a href="http://www.youtube.com/sparkfun" target="_blank" class="hidetext"><span>YouTube</span></a></li>
+        <li class="vimeo"><a href="http://www.vimeo.com/sparkfun" target="_blank" class="hidetext"><span>Vimeo</span></a></li>
+        <li class="gplus"><a href="https://plus.google.com/106084846822083498483/" target="_blank" class="hidetext"><span>Google Plus</span></a></li>
+        <li class="facebook"><a href="http://www.facebook.com/SparkFun" target="_blank" class="hidetext"><span>Facebook</span></a></li>
+        <li class="flickr"><a href="http://www.flickr.com/photos/sparkfun/" target="_blank" class="hidetext"><span>Flickr</span></a></li>
+        <li class="twitter"><a href="https://twitter.com/#!/sparkfun" target="_blank" class="hidetext"><span>Twitter</span></a></li>
+        <li class="rss"><a href="http://www.sparkfun.com/feeds" class="hidetext"><span>RSS</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <p id="copyleft">
+    SparkFun Electronics <a href="http://www.sparkfun.com/news/300">®</a>    <span class="wide">|</span>
+    <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=6175+Longbow+Dr,+Boulder,+CO+80301&sll=40.006234,-105.224915&sspn=0.012113,0.020192&ie=UTF8&hq=&hnear=6175+Longbow+Dr,+Boulder,+Colorado+80301&t=h&z=16">Boulder, Colorado</a>
+    <span class="wide">|</span>
+    <a href="http://www.sparkfun.com/static/customer_service">Customer Service</a>
+  </p>
+</div>
+
+        <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-3404365-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+      
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body><span id="skype_highlighting_settings" display="none" autoextractnumbers="1"></span><object id="skype_plugin_object" location.href="http://www.sparkfun.com/tutorials/200" location.hostname="www.sparkfun.com" style="position: absolute; visibility: hidden; left: -100px; top: -100px; " width="0" height="0" type="application/x-vnd.skype.toolbars.npplugin.4.2.0"></object></html>

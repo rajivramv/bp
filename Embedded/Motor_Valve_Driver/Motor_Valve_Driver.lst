@@ -1,0 +1,272 @@
+   1               		.file	"Motor_Valve_Driver.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	Initializing_Port_Timer
+  18               	Initializing_Port_Timer:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 87B3      		in r24,55-32
+  25 0002 8C60      		ori r24,lo8(12)
+  26 0004 87BB      		out 55-32,r24
+  27               	.LM3:
+  28 0006 88E0      		ldi r24,lo8(8)
+  29 0008 83BF      		out 83-32,r24
+  30               	.LM4:
+  31 000a 12BE      		out 82-32,__zero_reg__
+  32               	.LM5:
+  33 000c 1CBE      		out 92-32,__zero_reg__
+  34               	/* epilogue start */
+  35               	.LM6:
+  36 000e 0895      		ret
+  37               	.LFE6:
+  39               	.global	InflateCuff
+  41               	InflateCuff:
+  42               	.LFB7:
+  43               	.LM7:
+  44               	/* prologue: function */
+  45               	/* frame size = 0 */
+  46               	.LBB36:
+  47               	.LBB37:
+  48               	.LM8:
+  49 0010 87B3      		in r24,55-32
+  50 0012 8C60      		ori r24,lo8(12)
+  51 0014 87BB      		out 55-32,r24
+  52               	.LM9:
+  53 0016 88E0      		ldi r24,lo8(8)
+  54 0018 83BF      		out 83-32,r24
+  55               	.LM10:
+  56 001a 12BE      		out 82-32,__zero_reg__
+  57               	.LM11:
+  58 001c 1CBE      		out 92-32,__zero_reg__
+  59               	.LBE37:
+  60               	.LBE36:
+  61               	.LM12:
+  62 001e 88B3      		in r24,56-32
+  63 0020 8C60      		ori r24,lo8(12)
+  64 0022 88BB      		out 56-32,r24
+  65               	/* epilogue start */
+  66               	.LM13:
+  67 0024 0895      		ret
+  68               	.LFE7:
+  70               	.global	DeflateFast
+  72               	DeflateFast:
+  73               	.LFB8:
+  74               	.LM14:
+  75               	/* prologue: function */
+  76               	/* frame size = 0 */
+  77               	.LBB38:
+  78               	.LBB39:
+  79               	.LM15:
+  80 0026 87B3      		in r24,55-32
+  81 0028 8C60      		ori r24,lo8(12)
+  82 002a 87BB      		out 55-32,r24
+  83               	.LM16:
+  84 002c 88E0      		ldi r24,lo8(8)
+  85 002e 83BF      		out 83-32,r24
+  86               	.LM17:
+  87 0030 12BE      		out 82-32,__zero_reg__
+  88               	.LM18:
+  89 0032 1CBE      		out 92-32,__zero_reg__
+  90               	.LBE39:
+  91               	.LBE38:
+  92               	.LM19:
+  93 0034 88B3      		in r24,56-32
+  94 0036 837F      		andi r24,lo8(-13)
+  95 0038 88BB      		out 56-32,r24
+  96               	/* epilogue start */
+  97               	.LM20:
+  98 003a 0895      		ret
+  99               	.LFE8:
+ 101               	.global	DeflateSlow
+ 103               	DeflateSlow:
+ 104               	.LFB9:
+ 105               	.LM21:
+ 106               	/* prologue: function */
+ 107               	/* frame size = 0 */
+ 108               	.LBB40:
+ 109               	.LBB41:
+ 110               	.LM22:
+ 111 003c 87B3      		in r24,55-32
+ 112 003e 8C60      		ori r24,lo8(12)
+ 113 0040 87BB      		out 55-32,r24
+ 114               	.LM23:
+ 115 0042 88E0      		ldi r24,lo8(8)
+ 116 0044 83BF      		out 83-32,r24
+ 117               	.LM24:
+ 118 0046 12BE      		out 82-32,__zero_reg__
+ 119               	.LM25:
+ 120 0048 1CBE      		out 92-32,__zero_reg__
+ 121               	.LBE41:
+ 122               	.LBE40:
+ 123               	.LM26:
+ 124 004a C298      		cbi 56-32,2
+ 125               	.LM27:
+ 126 004c 8FEF      		ldi r24,lo8(-1)
+ 127 004e 8CBF      		out 92-32,r24
+ 128               	.LM28:
+ 129 0050 83B7      		in r24,83-32
+ 130 0052 8161      		ori r24,lo8(17)
+ 131 0054 83BF      		out 83-32,r24
+ 132               	/* epilogue start */
+ 133               	.LM29:
+ 134 0056 0895      		ret
+ 135               	.LFE9:
+ 137               	.global	main
+ 139               	main:
+ 140               	.LFB10:
+ 141               	.LM30:
+ 142 0058 CF93      		push r28
+ 143 005a DF93      		push r29
+ 144               	/* prologue: function */
+ 145               	/* frame size = 0 */
+ 146               	.LBB42:
+ 147               	.LBB43:
+ 148               	.LBB44:
+ 149               	.LBB45:
+ 150               	.LM31:
+ 151 005c C9E1      		ldi r28,lo8(25)
+ 152 005e D0E0      		ldi r29,hi8(25)
+ 153               	.LVL0:
+ 154               	.L14:
+ 155               	.LBE45:
+ 156               	.LBE44:
+ 157               	.LBE43:
+ 158               	.LBE42:
+ 159               	.LM32:
+ 160 0060 0E94 0000 		call InflateCuff
+ 161               	.LVL1:
+ 162 0064 80E5      		ldi r24,lo8(-15536)
+ 163 0066 93EC      		ldi r25,hi8(-15536)
+ 164               	.LVL2:
+ 165               	.L10:
+ 166               	.LBB49:
+ 167               	.LBB48:
+ 168               	.LBB47:
+ 169               	.LBB46:
+ 170               	.LM33:
+ 171 0068 FE01      		movw r30,r28
+ 172               	.LVL3:
+ 173               	/* #APP */
+ 174               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 175 006a 3197      		1: sbiw r30,1
+ 176 006c 01F4      		brne 1b
+ 177               	 ;  0 "" 2
+ 178               	/* #NOAPP */
+ 179               	.LBE46:
+ 180               	.LBE47:
+ 181               	.LM34:
+ 182 006e 0197      		sbiw r24,1
+ 183               	.LM35:
+ 184 0070 01F4      		brne .L10
+ 185               	.LBE48:
+ 186               	.LBE49:
+ 187               	.LM36:
+ 188 0072 0E94 0000 		call DeflateFast
+ 189               	.LVL4:
+ 190 0076 80E5      		ldi r24,lo8(-15536)
+ 191 0078 93EC      		ldi r25,hi8(-15536)
+ 192               	.LVL5:
+ 193               	.L11:
+ 194               	.LBB50:
+ 195               	.LBB51:
+ 196               	.LBB52:
+ 197               	.LBB53:
+ 198               	.LM37:
+ 199 007a FE01      		movw r30,r28
+ 200               	.LVL6:
+ 201               	/* #APP */
+ 202               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 203 007c 3197      		1: sbiw r30,1
+ 204 007e 01F4      		brne 1b
+ 205               	 ;  0 "" 2
+ 206               	/* #NOAPP */
+ 207               	.LBE53:
+ 208               	.LBE52:
+ 209               	.LM38:
+ 210 0080 0197      		sbiw r24,1
+ 211               	.LM39:
+ 212 0082 01F4      		brne .L11
+ 213               	.LBE51:
+ 214               	.LBE50:
+ 215               	.LM40:
+ 216 0084 0E94 0000 		call InflateCuff
+ 217               	.LVL7:
+ 218 0088 80E5      		ldi r24,lo8(-15536)
+ 219 008a 93EC      		ldi r25,hi8(-15536)
+ 220               	.LVL8:
+ 221               	.L12:
+ 222               	.LBB54:
+ 223               	.LBB55:
+ 224               	.LBB56:
+ 225               	.LBB57:
+ 226               	.LM41:
+ 227 008c FE01      		movw r30,r28
+ 228               	.LVL9:
+ 229               	/* #APP */
+ 230               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 231 008e 3197      		1: sbiw r30,1
+ 232 0090 01F4      		brne 1b
+ 233               	 ;  0 "" 2
+ 234               	/* #NOAPP */
+ 235               	.LBE57:
+ 236               	.LBE56:
+ 237               	.LM42:
+ 238 0092 0197      		sbiw r24,1
+ 239               	.LM43:
+ 240 0094 01F4      		brne .L12
+ 241               	.LBE55:
+ 242               	.LBE54:
+ 243               	.LM44:
+ 244 0096 0E94 0000 		call DeflateSlow
+ 245               	.LVL10:
+ 246 009a 80E5      		ldi r24,lo8(-15536)
+ 247 009c 93EC      		ldi r25,hi8(-15536)
+ 248               	.LVL11:
+ 249               	.L13:
+ 250               	.LBB58:
+ 251               	.LBB59:
+ 252               	.LBB60:
+ 253               	.LBB61:
+ 254               	.LM45:
+ 255 009e FE01      		movw r30,r28
+ 256               	.LVL12:
+ 257               	/* #APP */
+ 258               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 259 00a0 3197      		1: sbiw r30,1
+ 260 00a2 01F4      		brne 1b
+ 261               	 ;  0 "" 2
+ 262               	/* #NOAPP */
+ 263               	.LBE61:
+ 264               	.LBE60:
+ 265               	.LM46:
+ 266 00a4 0197      		sbiw r24,1
+ 267               	.LM47:
+ 268 00a6 01F4      		brne .L13
+ 269 00a8 00C0      		rjmp .L14
+ 270               	.LBE59:
+ 271               	.LBE58:
+ 272               	.LFE10:
+ 330               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 Motor_Valve_Driver.c
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:2      *ABS*:0000003f __SREG__
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:5      *ABS*:00000034 __CCP__
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:18     .text:00000000 Initializing_Port_Timer
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:41     .text:00000010 InflateCuff
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:72     .text:00000026 DeflateFast
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:103    .text:0000003c DeflateSlow
+C:\Users\Karan\AppData\Local\Temp/ccxDUAQH.s:139    .text:00000058 main
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,1 @@
+<Project name="BP Monitor"><File path="lcd.c"></File><File path="lcd_routines.c"></File><File path="lcd_routines.h"></File><File path="Makefile"></File><File path="adc_routines.c"></File><File path="adc_routines.h"></File><File path="main_prog.c"></File><File path="motor_valve_routines.c"></File></Project>

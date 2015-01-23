@@ -1,0 +1,118 @@
+   1               		.file	"blink.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8FEF      		ldi r24,lo8(-1)
+  25 0002 8ABB      		out 58-32,r24
+  26               	.LM3:
+  27 0004 87BB      		out 55-32,r24
+  28               	.LM4:
+  29 0006 84BB      		out 52-32,r24
+  30               	.LM5:
+  31 0008 81BB      		out 49-32,r24
+  32               	.LM6:
+  33 000a 2FEF      		ldi r18,lo8(-1)
+  34               	.LBB18:
+  35               	.LBB19:
+  36               	.LBB20:
+  37               	.LBB21:
+  38               	.LM7:
+  39 000c 49E1      		ldi r20,lo8(25)
+  40 000e 50E0      		ldi r21,hi8(25)
+  41               	.LVL0:
+  42               	.L4:
+  43               	.LBE21:
+  44               	.LBE20:
+  45               	.LBE19:
+  46               	.LBE18:
+  47               	.LM8:
+  48 0010 2BBB      		out 59-32,r18
+  49               	.LM9:
+  50 0012 28BB      		out 56-32,r18
+  51               	.LM10:
+  52 0014 25BB      		out 53-32,r18
+  53               	.LM11:
+  54 0016 22BB      		out 50-32,r18
+  55 0018 80E2      		ldi r24,lo8(20000)
+  56 001a 9EE4      		ldi r25,hi8(20000)
+  57               	.LVL1:
+  58               	.L2:
+  59               	.LBB25:
+  60               	.LBB24:
+  61               	.LBB23:
+  62               	.LBB22:
+  63               	.LM12:
+  64 001c FA01      		movw r30,r20
+  65               	.LVL2:
+  66               	/* #APP */
+  67               	 ;  105 "e:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  68 001e 3197      		1: sbiw r30,1
+  69 0020 01F4      		brne 1b
+  70               	 ;  0 "" 2
+  71               	/* #NOAPP */
+  72               	.LBE22:
+  73               	.LBE23:
+  74               	.LM13:
+  75 0022 0197      		sbiw r24,1
+  76               	.LM14:
+  77 0024 01F4      		brne .L2
+  78               	.LBE24:
+  79               	.LBE25:
+  80               	.LM15:
+  81 0026 1BBA      		out 59-32,__zero_reg__
+  82               	.LM16:
+  83 0028 18BA      		out 56-32,__zero_reg__
+  84               	.LM17:
+  85 002a 15BA      		out 53-32,__zero_reg__
+  86               	.LM18:
+  87 002c 12BA      		out 50-32,__zero_reg__
+  88 002e 80E1      		ldi r24,lo8(10000)
+  89 0030 97E2      		ldi r25,hi8(10000)
+  90               	.LVL3:
+  91               	.L3:
+  92               	.LBB26:
+  93               	.LBB27:
+  94               	.LBB28:
+  95               	.LBB29:
+  96               	.LM19:
+  97 0032 FA01      		movw r30,r20
+  98               	.LVL4:
+  99               	/* #APP */
+ 100               	 ;  105 "e:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 101 0034 3197      		1: sbiw r30,1
+ 102 0036 01F4      		brne 1b
+ 103               	 ;  0 "" 2
+ 104               	/* #NOAPP */
+ 105               	.LBE29:
+ 106               	.LBE28:
+ 107               	.LM20:
+ 108 0038 0197      		sbiw r24,1
+ 109               	.LM21:
+ 110 003a 01F4      		brne .L3
+ 111 003c 00C0      		rjmp .L4
+ 112               	.LBE27:
+ 113               	.LBE26:
+ 114               	.LFE6:
+ 140               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 blink.c
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:2      *ABS*:0000003f __SREG__
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:5      *ABS*:00000034 __CCP__
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Rajiv\AppData\Local\Temp/ccjSlpqg.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS
